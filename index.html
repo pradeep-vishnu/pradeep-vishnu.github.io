@@ -3,64 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Jane Doe | Research Profile</title>
+    <title>Dr. Jane Doe | Research & Performance Profile</title>
     <style>
-        /* CSS Variables for Dark Theme */
+        /* Modern CSS Variables (Controlled Themes) */
         :root {
-            --bg-color: #121212;
-            --surface-color: #1e1e1e;
-            --text-primary: #ffffff;
+            --bg-color: #0a0a0a; /* True Deep Black */
+            --surface-color: #141414; /* Dark Surface */
+            --navbar-bg: rgba(0, 0, 0, 0.85);
+            --text-primary: #f0f0f0;
             --text-secondary: #a0a0a0;
-            --accent-color: #58a6ff;
-            --border-color: #333333;
+            --accent-color: #00e6ff; /* Cyber Cyan */
+            --accent-hover: #ff0055; /* Kinetic Red */
+            --border-color: #222222;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --scroll-speed: 0.6s;
         }
 
-        /* Base Reset & Typography */
+        /* 1. Global Reset & Performance Scroll */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        html {
+            /* Enables smooth scrolling across the entire page */
+            scroll-behavior: smooth; 
+            scroll-padding-top: 80px; /* Offset for fixed navbar */
             background-color: var(--bg-color);
             color: var(--text-primary);
+            font-family: var(--font-main);
             line-height: 1.6;
-            padding: 2rem;
+            overflow-x: hidden;
+        }
+
+        body {
             display: flex;
             justify-content: center;
+            min-height: 100vh;
         }
 
         a {
             color: var(--accent-color);
             text-decoration: none;
-            transition: opacity 0.2s ease;
+            transition: color 0.2s ease, opacity 0.2s ease;
         }
 
         a:hover {
-            opacity: 0.8;
-            text-decoration: underline;
+            color: var(--accent-hover);
         }
 
-        /* Layout Container */
+        /* 2. SUBTLE ANIMATED BACKGROUND (Porsche Kinetic Vibe) */
+        /* This container is always fixed in the background */
+        #kinetic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Behind everything */
+            background: 
+                linear-gradient(217deg, rgba(10,10,10,.8), rgba(10,10,10,0) 70.71%),
+                linear-gradient(127deg, rgba(20,20,20,.8), rgba(20,20,20,0) 70.71%),
+                linear-gradient(336deg, rgba(0,0,0,.8), rgba(0,0,0,0) 70.71%);
+            overflow: hidden;
+        }
+
+        /* The moving streaks: Subtle horizontal lines suggesting speed */
+        .streak {
+            position: absolute;
+            background: linear-gradient(90deg, rgba(0,230,255,0) 0%, rgba(0,230,255,0.15) 50%, rgba(0,230,255,0) 100%);
+            height: 1px;
+            width: 100%;
+            opacity: 0;
+            animation: moveStreaks 12s linear infinite;
+        }
+
+        .streak:nth-child(1) { top: 20%; animation-delay: 0s; }
+        .streak:nth-child(2) { top: 50%; animation-delay: 4s; }
+        .streak:nth-child(3) { top: 80%; animation-delay: 8s; }
+
+        @keyframes moveStreaks {
+            0% { transform: translateX(100%); opacity: 0; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
+            100% { transform: translateX(-100%); opacity: 0; }
+        }
+
+        /* 3. FIXED NAVIGATION BAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background-color: var(--navbar-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Always on top */
+            backdrop-filter: blur(10px); /* Modern blur effect */
+        }
+
+        .nav-container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        /* 4. MAIN CONTENT LAYOUT */
         .container {
             max-width: 768px;
             width: 100%;
+            margin-top: 100px; /* Push content below fixed nav */
+            padding: 0 1rem;
         }
 
-        /* Hero / Header Section */
-        header {
+        /* Home Section (Hero) */
+        #home {
             display: flex;
             align-items: center;
             gap: 2rem;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-color);
-        }
-
-        .profile-img-container {
-            flex-shrink: 0;
         }
 
         .profile-img {
@@ -68,152 +167,130 @@
             height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid var(--border-color);
-            background-color: var(--surface-color); /* Placeholder background */
+            border: 2px solid var(--accent-color); /* Highlight color border */
+            box-shadow: 0 0 15px rgba(0, 230, 255, 0.3); /* Cyan Glow */
         }
 
         .hero-text h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 0.5rem;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .hero-text h2 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             color: var(--text-secondary);
             font-weight: 400;
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Main Content Sections */
         section {
-            margin-bottom: 3rem;
+            padding: 60px 0; /* Space around sections for smooth scroll */
+            margin-bottom: 2rem;
         }
 
         h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             color: var(--text-primary);
+            border-left: 3px solid var(--accent-color);
+            padding-left: 15px;
         }
 
         p {
             color: var(--text-secondary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
         }
 
-        /* Tags for Research Interests */
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
+        /* Tags and Lists (Retained from previous) */
+        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .tag { background-color: var(--surface-color); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border-color); }
 
-        .tag {
-            background-color: var(--surface-color);
-            color: var(--text-primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid var(--border-color);
-        }
+        .pub-list { list-style: none; }
+        .pub-list li { background-color: var(--surface-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color); transition: transform 0.2s ease, box-shadow 0.2s ease;}
+        .pub-list li:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); } /* Minimal interaction */
 
-        /* Publications List */
-        .pub-list {
-            list-style: none;
-        }
-
-        .pub-list li {
-            background-color: var(--surface-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            border: 1px solid var(--border-color);
-        }
-
-        .pub-title {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .pub-authors {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .pub-venue {
-            font-size: 0.9rem;
-            font-style: italic;
-        }
+        .pub-title { font-weight: 600; font-size: 1.15rem; margin-bottom: 0.25rem; }
+        .pub-authors, .pub-venue { color: var(--text-secondary); font-size: 0.95rem; }
+        .pub-venue { font-style: italic; }
 
         /* Mobile Responsiveness */
         @media (max-width: 600px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-            .social-links {
-                justify-content: center;
-            }
+            #home { flex-direction: column; text-align: center; }
+            .nav-container { justify-content: center; }
+            .nav-links { display: none; } /* Hide links on mobile, or implement hamburger */
+            .hero-text h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Subtle Background Animation -->
+    <div id="kinetic-bg">
+        <div class="streak"></div>
+        <div class="streak"></div>
+        <div class="streak"></div>
+    </div>
+
+    <!-- Fixed Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">J. DOE</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#publications">Publications</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
     <div class="container">
-        <!-- Hero Section -->
-        <header>
-            <div class="profile-img-container">
-                <!-- Replace 'profile.jpg' with your actual image path -->
-                <img src="profile.jpg" alt="Profile Picture" class="profile-img">
-            </div>
+        
+        <!-- HOME SECTION (HERO) -->
+        <header id="home">
+            <img src="profile.jpg" alt="Dr. Jane Doe" class="profile-img">
             <div class="hero-text">
                 <h1>Dr. Firstname Lastname</h1>
-                <h2>Postdoctoral Researcher at University Name</h2>
-                <div class="social-links">
-                    <a href="mailto:your.email@example.com">Email</a> •
-                    <a href="https://scholar.google.com" target="_blank">Google Scholar</a> •
-                    <a href="https://github.com/username" target="_blank">GitHub</a>
+                <h2>Postdoctoral Researcher | AI & Computation</h2>
+                <div class="tags">
+                    <a href="mailto:email@example.com">Email</a>
+                    <a href="#" target="_blank">Scholar</a>
+                    <a href="#" target="_blank">GitHub</a>
                 </div>
             </div>
         </header>
 
         <main>
-            <!-- About Section -->
-            <section>
+            <!-- ABOUT SECTION -->
+            <section id="about">
                 <h3>About Me</h3>
-                <p>I am a researcher specializing in artificial intelligence and computational biology. My work focuses on developing machine learning models to understand complex biological systems. I currently work in the [Lab Name] where I lead projects on predictive modeling.</p>
-                
+                <p>I am a researcher specializing in high-performance artificial intelligence. My work focuses on predictive modeling in complex systems. This site is designed for speed and minimalist efficiency.</p>
                 <div class="tags">
                     <span class="tag">Machine Learning</span>
                     <span class="tag">Computational Biology</span>
                     <span class="tag">Data Science</span>
-                    <span class="tag">Genomics</span>
                 </div>
             </section>
 
-            <!-- Selected Publications Section -->
-            <section>
+            <!-- PUBLICATIONS SECTION -->
+            <section id="publications">
                 <h3>Selected Publications</h3>
                 <ul class="pub-list">
                     <li>
-                        <div class="pub-title"><a href="#">A Novel Approach to Predictive Modeling in Genomics</a></div>
-                        <div class="pub-authors">Lastname, F., Coauthor, A., & Supervisor, B.</div>
-                        <div class="pub-venue">Journal of Computational Biology, 2023</div>
+                        <div class="pub-title"><a href="#">A Fast Approach to Predictive Modeling</a></div>
+                        <div class="pub-authors">Lastname, F., Coauthor, A.</div>
+                        <div class="pub-venue">Kinetic Systems Journal, 2024</div>
                     </li>
                     <li>
-                        <div class="pub-title"><a href="#">Deep Learning Architectures for Sequence Analysis</a></div>
-                        <div class="pub-authors">Lastname, F., & Researcher, C.</div>
-                        <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2022</div>
+                        <div class="pub-title"><a href="#">Neural Architectures for Velocity Analysis</a></div>
+                        <div class="pub-authors">Lastname, F.</div>
+                        <div class="pub-venue">Conference on Dynamic Systems (CDS), 2023</div>
                     </li>
                 </ul>
             </section>
