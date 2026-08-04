@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Jane Doe | Research Profile</title>
+    <style>
+        /* CSS Variables for Dark Theme */
+        :root {
+            --bg-color: #121212;
+            --surface-color: #1e1e1e;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #58a6ff;
+            --border-color: #333333;
+        }
+
+        /* Base Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 768px;
+            width: 100%;
+        }
+
+        /* Hero / Header Section */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-img-container {
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+            background-color: var(--surface-color); /* Placeholder background */
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero-text h2 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Main Content Sections */
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* Tags for Research Interests */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background-color: var(--surface-color);
+            color: var(--text-primary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Publications List */
+        .pub-list {
+            list-style: none;
+        }
+
+        .pub-list li {
+            background-color: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .pub-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-authors {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pub-venue {
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <header>
+            <div class="profile-img-container">
+                <!-- Replace 'profile.jpg' with your actual image path -->
+                <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+            </div>
+            <div class="hero-text">
+                <h1>Dr. Firstname Lastname</h1>
+                <h2>Postdoctoral Researcher at University Name</h2>
+                <div class="social-links">
+                    <a href="mailto:your.email@example.com">Email</a> •
+                    <a href="https://scholar.google.com" target="_blank">Google Scholar</a> •
+                    <a href="https://github.com/username" target="_blank">GitHub</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- About Section -->
+            <section>
+                <h3>About Me</h3>
+                <p>I am a researcher specializing in artificial intelligence and computational biology. My work focuses on developing machine learning models to understand complex biological systems. I currently work in the [Lab Name] where I lead projects on predictive modeling.</p>
+                
+                <div class="tags">
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">Computational Biology</span>
+                    <span class="tag">Data Science</span>
+                    <span class="tag">Genomics</span>
+                </div>
+            </section>
+
+            <!-- Selected Publications Section -->
+            <section>
+                <h3>Selected Publications</h3>
+                <ul class="pub-list">
+                    <li>
+                        <div class="pub-title"><a href="#">A Novel Approach to Predictive Modeling in Genomics</a></div>
+                        <div class="pub-authors">Lastname, F., Coauthor, A., & Supervisor, B.</div>
+                        <div class="pub-venue">Journal of Computational Biology, 2023</div>
+                    </li>
+                    <li>
+                        <div class="pub-title"><a href="#">Deep Learning Architectures for Sequence Analysis</a></div>
+                        <div class="pub-authors">Lastname, F., & Researcher, C.</div>
+                        <div class="pub-venue">Conference on Neural Information Processing Systems (NeurIPS), 2022</div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
