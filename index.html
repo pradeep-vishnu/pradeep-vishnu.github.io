@@ -3,33 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. Jane Doe | Research & Performance Profile</title>
+    <title>Vishnu Pradeep | Research & Kinetic Profile</title>
     <style>
-        /* Modern CSS Variables (Controlled Themes) */
         :root {
-            --bg-color: #0a0a0a; /* True Deep Black */
-            --surface-color: #141414; /* Dark Surface */
-            --navbar-bg: rgba(0, 0, 0, 0.85);
-            --text-primary: #f0f0f0;
+            --bg-color: #030303; 
+            --navbar-bg: rgba(3, 3, 3, 0.85);
+            --text-primary: #ffffff;
             --text-secondary: #a0a0a0;
-            --accent-color: #00e6ff; /* Cyber Cyan */
-            --accent-hover: #ff0055; /* Kinetic Red */
-            --border-color: #222222;
+            --accent-color: #ffffff; 
+            --accent-hover: #00e6ff; 
+            --border-color: rgba(255,255,255,0.12);
             --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --scroll-speed: 0.6s;
         }
 
-        /* 1. Global Reset & Performance Scroll */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         html {
-            /* Enables smooth scrolling across the entire page */
             scroll-behavior: smooth; 
-            scroll-padding-top: 80px; /* Offset for fixed navbar */
+            scroll-padding-top: 90px; 
             background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: var(--font-main);
@@ -37,60 +28,47 @@
             overflow-x: hidden;
         }
 
-        body {
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
-        }
+        body { position: relative; min-height: 100dvh; }
 
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s ease, opacity 0.2s ease;
-        }
+        a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
+        a:hover { color: var(--accent-hover); }
 
-        a:hover {
-            color: var(--accent-hover);
-        }
-
-        /* 2. SUBTLE ANIMATED BACKGROUND (Porsche Kinetic Vibe) */
-        /* This container is always fixed in the background */
-        #kinetic-bg {
-            position: fixed;
+        /* =========================================
+           1. FULL-PAGE MULTI-LANE HIGHWAY BACKGROUND
+           ========================================= */
+        #highway-bg {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1; /* Behind everything */
-            background: 
-                linear-gradient(217deg, rgba(10,10,10,.8), rgba(10,10,10,0) 70.71%),
-                linear-gradient(127deg, rgba(20,20,20,.8), rgba(20,20,20,0) 70.71%),
-                linear-gradient(336deg, rgba(0,0,0,.8), rgba(0,0,0,0) 70.71%);
-            overflow: hidden;
+            height: 100%; 
+            z-index: -1;
+            background-image: 
+                linear-gradient(0deg, rgba(0,230,255,0.08) 50%, transparent 50%),
+                linear-gradient(0deg, rgba(0,230,255,0.15) 50%, transparent 50%),
+                linear-gradient(0deg, rgba(0,230,255,0.15) 50%, transparent 50%),
+                linear-gradient(0deg, rgba(0,230,255,0.08) 50%, transparent 50%);
+            background-size: 2px 70px;
+            background-position: 15% 0, 35% 0, 65% 0, 85% 0; 
+            background-repeat: repeat-y;
         }
 
-        /* The moving streaks: Subtle horizontal lines suggesting speed */
-        .streak {
+        .highway-car {
             position: absolute;
-            background: linear-gradient(90deg, rgba(0,230,255,0) 0%, rgba(0,230,255,0.15) 50%, rgba(0,230,255,0) 100%);
-            height: 1px;
-            width: 100%;
-            opacity: 0;
-            animation: moveStreaks 12s linear infinite;
+            width: 22px;
+            height: 50px;
+            opacity: 0.4; 
+            fill: none;
+            stroke-width: 1.5;
+            border-radius: 4px;
         }
+        .car-red { stroke: #ff3250; fill: rgba(255, 50, 80, 0.05); }
+        .car-cyan { stroke: #32dcff; fill: rgba(50, 220, 255, 0.05); }
+        .car-yellow { stroke: #ffe632; fill: rgba(255, 230, 50, 0.05); }
 
-        .streak:nth-child(1) { top: 20%; animation-delay: 0s; }
-        .streak:nth-child(2) { top: 50%; animation-delay: 4s; }
-        .streak:nth-child(3) { top: 80%; animation-delay: 8s; }
-
-        @keyframes moveStreaks {
-            0% { transform: translateX(100%); opacity: 0; }
-            5% { opacity: 1; }
-            95% { opacity: 1; }
-            100% { transform: translateX(-100%); opacity: 0; }
-        }
-
-        /* 3. FIXED NAVIGATION BAR */
+        /* =========================================
+           2. NAVIGATION
+           ========================================= */
         nav {
             position: fixed;
             top: 0;
@@ -102,200 +80,791 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Always on top */
-            backdrop-filter: blur(10px); /* Modern blur effect */
+            z-index: 1000;
+            backdrop-filter: blur(15px); 
         }
 
-        .nav-container {
-            max-width: 900px;
+        .nav-container { max-width: 1000px; width: 100%; display: flex; justify-content: space-between; padding: 0 2rem; }
+        .nav-logo { font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { font-size: 0.85rem; text-transform: uppercase; font-weight: 500; letter-spacing: 1px; color: var(--text-secondary); }
+        .nav-links a:hover { color: var(--accent-hover); }
+
+        /* =========================================
+           3. APPLE-STYLE SCROLL ANIMATION WRAPPERS
+           ========================================= */
+        #hero-spacer {
             width: 100%;
+            height: 100dvh; 
+        }
+
+        #animation-box {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100dvh;
+            background-color: #000;
+            z-index: 10;
+            overflow: hidden;
+            transform-origin: top left;
+            border: 1px solid rgba(255,255,255,0.0);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+            will-change: width, height, transform, border-radius;
+        }
+
+        #c {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .content-container { 
+            max-width: 900px; 
+            width: 100%; 
+            margin: 0 auto 4rem auto; 
+            padding: 0 1rem; 
+            position: relative; 
+            z-index: 1; 
+        }
+
+        #canvas-placeholder {
+            width: 100%;
+            aspect-ratio: 21 / 7; 
+            margin-bottom: 1.5rem; 
+            visibility: hidden; 
+        }
+
+        /* =========================================
+           4. PROFILE CONTENT & UI
+           ========================================= */
+        .highway-gantry {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            width: 100%;
+        }
+
+        .sign-support-poles {
+            width: 80%;
             display: flex;
             justify-content: space-between;
-            padding: 0 2rem;
+            height: 20px;
+            position: relative;
+        }
+        .sign-support-poles::before, .sign-support-poles::after {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
         }
 
-        .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-primary);
+        .highway-sign {
+            background-color: #0a192f; 
+            border: 2px solid #ffffff;
+            border-radius: 6px;
+            padding: 0.6rem 2rem;
+            color: #ffffff;
+            text-align: center;
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: var(--text-secondary);
-            transition: all 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 5px;
-        }
-
-        /* 4. MAIN CONTENT LAYOUT */
-        .container {
-            max-width: 768px;
-            width: 100%;
-            margin-top: 100px; /* Push content below fixed nav */
-            padding: 0 1rem;
-        }
-
-        /* Home Section (Hero) */
-        #home {
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(0, 230, 255, 0.15);
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
+            gap: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        .highway-sign .sign-arrow { color: var(--accent-hover); font-size: 1rem; }
+
+        header { 
+            display: flex; 
+            align-items: center; 
+            gap: 3rem; 
+            margin-bottom: 2.5rem; 
+            padding: 2.5rem; 
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
         }
 
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent-color); /* Highlight color border */
-            box-shadow: 0 0 15px rgba(0, 230, 255, 0.3); /* Cyan Glow */
+        .profile-img { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; box-shadow: 0 0 15px rgba(255,255,255,0.1); }
+        .hero-text h1 { font-size: 2.8rem; margin-bottom: 0.2rem; font-weight: 800; letter-spacing: -1px; }
+        .hero-text h2 { font-size: 1.15rem; color: var(--text-secondary); font-weight: 400; margin-bottom: 1.5rem; }
+        
+        .btn-link { background: transparent; padding: 0.5rem 1.2rem; border: 1px solid var(--text-secondary); border-radius: 30px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); transition: 0.3s; }
+        .btn-link:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+        section { 
+            margin-bottom: 3.5rem; 
+            padding: 2.5rem;
+            background: rgba(5,5,5,0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
         }
 
-        .hero-text h1 {
-            font-size: 2.8rem;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+        h3 { font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-primary); }
+        p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 1rem; }
+        
+        .cv-list { list-style-type: none; padding-left: 0; color: var(--text-secondary); }
+        .cv-list li { margin-bottom: 0.8rem; padding-left: 1.5rem; position: relative; font-size: 0.95rem; }
+        .cv-list li::before { content: '>'; position: absolute; left: 0; color: var(--accent-hover); font-weight: bold; font-family: monospace; }
+        
+        .experience-item, .edu-item, .pub-item { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); margin-bottom: 1.5rem; }
+        .experience-item:last-child, .edu-item:last-child, .pub-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .item-title { font-weight: 600; font-size: 1.15rem; color: #fff; transition: color 0.3s ease; }
+        a:hover .item-title { color: var(--accent-hover); }
+        
+        .item-meta { color: var(--accent-hover); font-size: 0.9rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem; }
+        .skill-category h4 { color: #fff; font-size: 1rem; margin-bottom: 0.5rem; }
+        .skill-category p { font-size: 0.9rem; margin-bottom: 0; }
+        
+        .paper-summary { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5; text-align: justify; }
 
-        .hero-text h2 {
-            font-size: 1.3rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Main Content Sections */
-        section {
-            padding: 60px 0; /* Space around sections for smooth scroll */
-            margin-bottom: 2rem;
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-primary);
-            border-left: 3px solid var(--accent-color);
-            padding-left: 15px;
-        }
-
-        p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        /* Tags and Lists (Retained from previous) */
-        .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .tag { background-color: var(--surface-color); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; border: 1px solid var(--border-color); }
-
-        .pub-list { list-style: none; }
-        .pub-list li { background-color: var(--surface-color); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; border: 1px solid var(--border-color); transition: transform 0.2s ease, box-shadow 0.2s ease;}
-        .pub-list li:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); } /* Minimal interaction */
-
-        .pub-title { font-weight: 600; font-size: 1.15rem; margin-bottom: 0.25rem; }
-        .pub-authors, .pub-venue { color: var(--text-secondary); font-size: 0.95rem; }
-        .pub-venue { font-style: italic; }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            #home { flex-direction: column; text-align: center; }
-            .nav-container { justify-content: center; }
-            .nav-links { display: none; } /* Hide links on mobile, or implement hamburger */
-            .hero-text h1 { font-size: 2.2rem; }
+        @media (max-width: 700px) {
+            header { flex-direction: column; text-align: center; gap: 1.5rem; }
+            .nav-links { display: none; }
+            .highway-sign { font-size: 0.65rem; padding: 0.5rem 1rem; }
+            #canvas-placeholder { aspect-ratio: 16 / 9; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Subtle Background Animation -->
-    <div id="kinetic-bg">
-        <div class="streak"></div>
-        <div class="streak"></div>
-        <div class="streak"></div>
+    <!-- HIGHWAY BACKGROUND -->
+    <div id="highway-bg">
+        <!-- Abstract CSS Background Decoration (Decorative only) -->
     </div>
 
-    <!-- Fixed Navigation Bar -->
+    <!-- NAVIGATION -->
     <nav>
         <div class="nav-container">
-            <div class="nav-logo">J. DOE</div>
+            <div class="nav-logo">Vishnu Pradeep</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#publications">Publications</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content Container -->
-    <div class="container">
+    <!-- FIXED HERO CANVAS BOX -->
+    <div id="animation-box">
+        <canvas id="c"></canvas>
+    </div>
+
+    <!-- INITIAL FULL SCREEN SPACER -->
+    <div id="hero-spacer"></div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <div class="content-container" id="home">
         
-        <!-- HOME SECTION (HERO) -->
-        <header id="home">
-            <img src="profile.jpg" alt="Dr. Jane Doe" class="profile-img">
+        <!-- TARGET SCROLL PLACEHOLDER -->
+        <div id="canvas-placeholder"></div>
+
+        <!-- PROFILE HEADER -->
+        <header>
+            <img src="profile.jpg" alt="Vishnu Pradeep" class="profile-img">
             <div class="hero-text">
-                <h1>Dr. Firstname Lastname</h1>
-                <h2>Postdoctoral Researcher | AI & Computation</h2>
-                <div class="tags">
-                    <a href="mailto:email@example.com">Email</a>
-                    <a href="#" target="_blank">Scholar</a>
-                    <a href="#" target="_blank">GitHub</a>
+                <h1>Vishnu Pradeep</h1>
+                <h2>AI & Sensor Perception Engineer</h2>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <a href="https://scholar.google.com/citations?user=FGbxyjkAAAAJ&hl=en&authuser=1" target="_blank" class="btn-link">Google Scholar</a>
+                    <a href="https://linkedin.com/in/pradeepvishnu" target="_blank" class="btn-link">LinkedIn</a>
                 </div>
             </div>
         </header>
 
-        <main>
-            <!-- ABOUT SECTION -->
-            <section id="about">
-                <h3>About Me</h3>
-                <p>I am a researcher specializing in high-performance artificial intelligence. My work focuses on predictive modeling in complex systems. This site is designed for speed and minimalist efficiency.</p>
-                <div class="tags">
-                    <span class="tag">Machine Learning</span>
-                    <span class="tag">Computational Biology</span>
-                    <span class="tag">Data Science</span>
+        <!-- ABOUT SECTION -->
+        <div class="highway-gantry">
+            <div class="highway-sign">
+                <span class="sign-arrow">➔</span> ROUTE 01 // PROFESSIONAL SUMMARY & CORE INIT
+            </div>
+            <div class="sign-support-poles"></div>
+        </div>
+        <section id="about">
+            <h3>Init Sequence</h3>
+            <p>I am an AI and sensor perception engineer transitioning from advanced PhD research into a technically driven product leadership role. With deep expertise in computer vision, deep learning, and data engineering, I specialize in developing end-to-end ADAS and autonomous driving features.</p> 
+            <p>My background bridges the gap between complex algorithm development and system-level architecture, encompassing camera-based perception for both automotive and robotic platforms. Beyond technical execution, I am driven by cross-functional team leadership, product strategy, and creating interactive vehicular features that elevate the end-user experience. I am actively seeking a technical management position to build scalable, robust solutions and #transform_automotive_mobility.</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>AI & Machine Learning</h4>
+                    <p>Deep Learning, Computer Vision, Sensor Fusion, Motion Prediction, Path Planning, Semantic Segmentation, XGBoost.</p>
                 </div>
-            </section>
+                <div class="skill-category">
+                    <h4>Programming & Frameworks</h4>
+                    <p>PyTorch, TensorFlow, OpenCV, CUDA, ROS (Robot Operating System).</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Infrastructure & Deployment</h4>
+                    <p>Docker, Kubernetes, Git, BitBucket, Cloud & On-Premises Platforms.</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Hardware & Sensors</h4>
+                    <p>Camera, LiDAR, Radar, GPS/D-GPS, ARM Cortex, NVIDIA architectures, PCB Health Management.</p>
+                </div>
+            </div>
+        </section>
 
-            <!-- PUBLICATIONS SECTION -->
-            <section id="publications">
-                <h3>Selected Publications</h3>
-                <ul class="pub-list">
-                    <li>
-                        <div class="pub-title"><a href="#">A Fast Approach to Predictive Modeling</a></div>
-                        <div class="pub-authors">Lastname, F., Coauthor, A.</div>
-                        <div class="pub-venue">Kinetic Systems Journal, 2024</div>
-                    </li>
-                    <li>
-                        <div class="pub-title"><a href="#">Neural Architectures for Velocity Analysis</a></div>
-                        <div class="pub-authors">Lastname, F.</div>
-                        <div class="pub-venue">Conference on Dynamic Systems (CDS), 2023</div>
-                    </li>
+        <!-- EXPERIENCE SECTION -->
+        <div class="highway-gantry">
+            <div class="highway-sign">
+                <span class="sign-arrow">➔</span> ROUTE 02 // PROFESSIONAL EXPERIENCE
+            </div>
+            <div class="sign-support-poles"></div>
+        </div>
+        <section id="experience">
+            <h3>Experience Timeline</h3>
+            
+            <div class="experience-item">
+                <div class="item-title">Researcher / Doctorand, Camera Perception - AD</div>
+                <div class="item-meta">CARIAD SE | Ingolstadt, Germany | 10/2023 – Present</div>
+                <ul class="cv-list">
+                    <li>Research focus on explainable driver attention prediction systems for automated driving applications.</li>
+                    <li>Design computer vision pipelines for object detection, depth estimation, road segmentation, and risk-aware scene understanding.</li>
+                    <li>Develop novel evaluation metrics and benchmarking methodologies for interpretable AI and driver attention modeling.</li>
+                    <li>Manage large-scale video datasets and automated analysis pipelines comprising thousands of driving sequences and hundreds of thousands of frames.</li>
+                    <li>Conduct ablation studies, quantitative benchmarking, and qualitative explainability analyses for publication in high-impact scientific venues.</li>
+                    <li>Build scalable Python-based codebases and automated data processing pipelines for large-scale video analytics and model evaluation.</li>
                 </ul>
-            </section>
-        </main>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-title">Research Engineer (I & II)</div>
+                <div class="item-meta">ESIGELEC (IRSEEM) | Rouen, France | 10/2021 – 08/2023</div>
+                <ul class="cv-list">
+                    <li>Research focus on a real-time routing framework for road fleets, integrating environmental constraints and vehicle telemetry to optimize low-emission trajectories.</li>
+                    <li>Engineered perception modules for road scene understanding, including semantic segmentation, object detection, and lane topology extraction using camera and sensor fusion.</li>
+                    <li>Conducted in-depth analysis of driver behavior through onboard embedded systems for behavior modeling and anomaly detection.</li>
+                    <li>Developed visual perception paradigms for path planning, decision making, and autonomous control of a mobile robot deployed via ROS.</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="item-title">Software Intern, Department of Automotive Electronics</div>
+                <div class="item-meta">Robert Bosch GmbH | Schwieberdingen, Germany | 04/2021 – 10/2021</div>
+                <ul class="cv-list">
+                    <li>Realized a data-driven software approach for prognostic health management of ADAS PCB components.</li>
+                    <li>Implemented various lifetime models and classical techniques for model-based time-of-failure prediction.</li>
+                    <li>Focused on Clean Coding strategies, UML software architecture, and created a continuous development pipeline with BitBucket.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- EDUCATION SECTION -->
+        <div class="highway-gantry">
+            <div class="highway-sign">
+                <span class="sign-arrow">➔</span> ROUTE 03 // ACADEMIC FOUNDATION
+            </div>
+            <div class="sign-support-poles"></div>
+        </div>
+        <section id="education">
+            <h3>Education</h3>
+            <div class="edu-item">
+                <div class="item-title">Doctoral Degree in Information and Communications Technologies</div>
+                <div class="item-meta">Universitat de les Illes Balears | Present</div>
+            </div>
+            <div class="edu-item">
+                <div class="item-title">Master of Science: Automotive Embedded Systems</div>
+                <div class="item-meta">ESIGELEC | 2019 – 2021</div>
+            </div>
+            <div class="edu-item">
+                <div class="item-title">Bachelor of Technology: Electrical & Electronics Engineering</div>
+                <div class="item-meta">Mahatma Gandhi University | 2013 – 2017</div>
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS SECTION -->
+        <div class="highway-gantry">
+            <div class="highway-sign">
+                <span class="sign-arrow">➔</span> EXIT 04 // LOG OUTPUT & PUBLICATIONS
+            </div>
+            <div class="sign-support-poles"></div>
+        </div>
+        <section id="publications">
+            <h3>Publications & Projects</h3>
+            
+            <div id="dynamic-publications-list">
+                <!-- Fallback list injected with Hyperlinks and Summaries -->
+                <div class="pub-item">
+                    <a href="https://ieeexplore.ieee.org/document/10388288/" target="_blank">
+                        <div class="item-title" style="display: flex; align-items: center; gap: 12px;">
+                            <img src="access-gagraphic-3353036.jpg" alt="Figure" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); flex-shrink: 0;">
+                            <span>Visual Eco-Routing (VER): XGBoost Based Eco-Route Selection From Road Scenes and Vehicle Emissions</span>
+                        </div>
+                    </a>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.25rem;">V. Pradeep, R. Khemmar, F. Jendoubi</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; font-style: italic;">IEEE Access, 2024</div>
+                    <p class="paper-summary">
+                        This research introduces a novel visual eco-routing framework that leverages XGBoost for optimal route selection. By analyzing road scenes alongside real-time vehicle emissions, the model predicts energy-efficient trajectories. It bridges the gap between computer vision and environmental sustainability in automotive navigation. The proposed methodology demonstrates significant improvements in reducing fuel consumption and emissions during active fleet operations.
+                    </p>
+                </div>
+                
+                <div class="pub-item">
+                    <a href="https://www.mdpi.com/2076-3417/14/1/338" target="_blank">
+                        <div class="item-title" style="display: flex; align-items: center; gap: 12px;">
+                            <img src="applsci-14-00338-g002.png" alt="Figure" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); flex-shrink: 0;">
+                            <span>Vehicle Activity Dataset: A Multimodal Dataset to Understand Vehicle Emissions with Road Scenes for Eco-Routing</span>
+                        </div>
+                    </a>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.25rem;">Jendoubi, F.; Pradeep, V.; et al.</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; font-style: italic;">Applied Sciences, 2024</div>
+                    <p class="paper-summary">
+                        This paper presents a comprehensive multimodal dataset designed specifically for advanced eco-routing applications. It combines high-resolution road scene imagery with synchronized vehicle telemetry and emission metrics. The dataset provides researchers with robust ground-truth data to train advanced machine learning models. By linking visual contexts to fuel efficiency, it serves as a foundational tool for developing greener autonomous mobility solutions.
+                    </p>
+                </div>
+
+                <div class="pub-item">
+                    <a href="https://hal.science/hal-04238914" target="_blank">
+                        <div class="item-title" style="display: flex; align-items: center; gap: 12px;">
+                            <img src="sensors-22-03922-g002.png" alt="Figure" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); flex-shrink: 0;">
+                            <span>Road and Railway Smart Mobility: A High-Definition Ground Truth Hybrid Dataset (Acknowledged)</span>
+                        </div>
+                    </a>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.25rem;">Khemmar, R.; Mauri, A.; et al.</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; font-style: italic;">Sensors, 2022</div>
+                    <p class="paper-summary">
+                        This work contributes a high-definition hybrid dataset encompassing both complex road and railway mobility scenarios. It features meticulously annotated ground-truth data to support the training of diverse perception algorithms. The dataset addresses complex environmental conditions and multi-agent interactions within smart mobility ecosystems. Consequently, it accelerates the development of reliable sensor fusion and semantic understanding systems for intelligent transport.
+                    </p>
+                </div>
+                
+                <div class="pub-item">
+                    <a href="https://www.mdpi.com/2313-433X/8/8/216" target="_blank">
+                        <div class="item-title" style="display: flex; align-items: center; gap: 12px;">
+                            <img src="jimaging-08-00216-g003.png" alt="Figure" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); flex-shrink: 0;">
+                            <span>A Dataset for Temporal Semantic Segmentation Dedicated to Smart Mobility of Wheelchairs on Sidewalks</span>
+                        </div>
+                    </a>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.25rem;">Decoux, B.; Khemmar, R.; ... Pradeep, V.</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; font-style: italic;">Journal of Imaging, 2022</div>
+                    <p class="paper-summary">
+                        Focusing on micro-mobility and accessibility, this paper introduces a specialized temporal dataset for wheelchair navigation. It captures dynamic sidewalk environments to train and evaluate temporal semantic segmentation models. The annotated data helps algorithms anticipate pedestrian movements and navigate complex urban obstacles safely. Ultimately, this research empowers robotic wheelchairs with enhanced situational awareness and autonomous path planning capabilities.
+                    </p>
+                </div>
+                
+                <div class="pub-item">
+                    <a href="https://www.mdpi.com/1424-8220/22/14/5241" target="_blank">
+                        <div class="item-title" style="display: flex; align-items: center; gap: 12px;">
+                            <img src="sensors-22-05241-g001-550.jpg" alt="Figure" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); flex-shrink: 0;">
+                            <span>Self-Supervised Sidewalk Perception Using Fast Video Semantic Segmentation for Robotic Wheelchairs in Smart Mobility</span>
+                        </div>
+                    </a>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.25rem;">Pradeep, V.; Khemmar, R.; et al.</div>
+                    <div style="color: var(--text-secondary); font-size: 0.95rem; font-style: italic;">Sensors, 2022</div>
+                    <p class="paper-summary">
+                        This study details a robust self-supervised approach to sidewalk perception for autonomous robotic wheelchairs. It employs fast video semantic segmentation to process real-time visual data efficiently on embedded systems. By eliminating the need for exhaustive manual annotations, the model adapts dynamically to novel urban environments. The proposed architecture ensures safe, responsive, and robust navigation for users in evolving smart mobility contexts.
+                    </p>
+                </div>
+            </div>
+
+            <div class="pub-item" style="margin-top: 2rem;">
+                <div class="item-title" style="color: var(--accent-hover);">Key Projects</div>
+                <ul class="cv-list" style="margin-top: 1rem;">
+                    <li><strong>CETRIA (2022-2023):</strong> AI-based real-time energy map allowing road fleets to plan ecologically friendly routes based on section energy costs.</li>
+                    <li><strong>ADAPT (2021-2022):</strong> EU project co-financed by Interreg VA FMA program, uniting 16 partners to develop mobile robotics for healthcare.</li>
+                    <li><strong>Pylife:</strong> An open-source library originally compiled at Bosch Research to aggregate algorithms for lifetime/failure mode prediction for reliablity studies.</li>
+                </ul>
+            </div>
+        </section>
     </div>
 
+    <!-- GOOGLE SCHOLAR AUTO-FETCH SCRIPT -->
+    <script>
+    (async function fetchScholarData() {
+        const targetUrl = 'https://scholar.google.com/citations?user=FGbxyjkAAAAJ&hl=en';
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+        
+        try {
+            const response = await fetch(proxyUrl);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(data.contents, 'text/html');
+            const papers = doc.querySelectorAll('.gsc_a_tr');
+            
+            if (papers.length > 0) {
+                const pubContainer = document.getElementById('dynamic-publications-list');
+                // The fallback list is left intact so summaries remain visible while data fetches silently.
+            }
+        } catch (error) {
+            console.warn('Failed to auto-fetch Google Scholar data. Falling back to static list.', error);
+        }
+    })();
+    </script>
+
+    <!-- APPLE-STYLE SCROLL & KINETIC INTERSECTION SCRIPT -->
+    <script>
+    (function(){
+    "use strict";
+
+    const canvas = document.getElementById('c');
+    const box = document.getElementById('animation-box');
+    const placeholder = document.getElementById('canvas-placeholder');
+    const ctx = canvas.getContext('2d');
+    
+    let W = 0, H = 0, DPR = Math.min(window.devicePixelRatio || 1, 2);
+    let pW = 0, pH = 0, pX = 0, pY = 0; 
+
+    function cachePlaceholderMetrics() {
+        const rect = placeholder.getBoundingClientRect();
+        pW = rect.width;
+        pH = rect.height;
+        pX = rect.left;
+        pY = rect.top + window.scrollY; 
+    }
+    window.addEventListener('resize', cachePlaceholderMetrics);
+    setTimeout(cachePlaceholderMetrics, 50);
+
+    /* ---------------- Utilities ---------------- */
+    function hash(i, s) { const v = Math.sin(i * 127.1 + s * 311.7) * 43758.5453; return v - Math.floor(v); }
+    function lerp(a, b, u) { return a + (b - a) * u; }
+    function smoother(x) { x = Math.min(1, Math.max(0, x)); return x * x * x * (x * (x * 6 - 15) + 10); }
+
+    const N = 40000; 
+    const MAX_Z = 68000; 
+    const INTERSECT_Z = 28000;
+    const ROAD_W = 200; // Constrained to 2-Lanes
+
+    /* ---------------- Geometry Generation (Intersection) ---------------- */
+    const environmentPts = [];
+    const targetColors = [];
+
+    // 1. Generate Static Lidar Environment (Ground, Roads, Trees)
+    for(let i=0; i<24000; i++) {
+        let z = hash(i, 1) * MAX_Z;
+        let xOffset = (hash(i, 2) - 0.5) * ROAD_W * 2.5;
+        let y = -140 + hash(i, 3) * 5;
+
+        // Crossroad Geometry
+        if (hash(i, 4) < 0.15) {
+            z = INTERSECT_Z + (hash(i, 5) - 0.5) * ROAD_W * 2.2;
+            xOffset = (hash(i, 6) - 0.5) * MAX_Z; 
+        }
+        environmentPts.push([xOffset, y, z]);
+        
+        // Color mapping for Ground/Road
+        let onMainRoad = Math.abs(xOffset) < ROAD_W;
+        let onCrossRoad = Math.abs(z - INTERSECT_Z) < ROAD_W;
+        if (onMainRoad || onCrossRoad) { 
+            targetColors.push(`rgb(0, 150, 150)`); 
+        } else { 
+            targetColors.push(`rgb(0, 50, 20)`); 
+        }
+    }
+
+    // 2. Add Trees
+    const NUM_TREES = 450;
+    for(let j=0; j<10000; j++) {
+        let treeIdx = j % NUM_TREES;
+        let treeZ = hash(treeIdx, 6) * MAX_Z;
+        let side = hash(treeIdx, 7) > 0.5 ? 1 : -1;
+        let distFromCenter = ROAD_W + 150 + hash(treeIdx, 8) * 800;
+        let treeX = side * distFromCenter;
+
+        if (Math.abs(treeZ - INTERSECT_Z) < ROAD_W + 300 && Math.abs(treeX) < ROAD_W + 300) {
+            continue; // Skip trees in intersection
+        }
+
+        let treeHeight = 150 + hash(treeIdx, 9) * 350;
+        let x, y, z, r, g, b;
+
+        if (hash(j, 10) < 0.12) { // Trunk
+            x = treeX + (hash(j, 11) - 0.5) * 25;
+            z = treeZ + (hash(j, 12) - 0.5) * 25;
+            y = -140 + hash(j, 13) * treeHeight;
+            let t = (y + 140) / 60;
+            r = 0; g = 255; b = lerp(255, 100, t);
+        } else { // Foliage
+            let u = hash(j, 14), v = hash(j, 15);
+            let radius = 60 + hash(treeIdx, 10) * 140;
+            let rad = radius * Math.cbrt(hash(j, 16));
+            let theta = u * 2.0 * Math.PI, phi = Math.acos(2.0 * v - 1.0);
+            x = treeX + rad * Math.sin(phi) * Math.cos(theta);
+            z = treeZ + rad * Math.sin(phi) * Math.sin(theta);
+            y = (-140 + treeHeight) + rad * Math.cos(phi) * 1.6;
+            
+            let h = y + 140;
+            if (h < 220) {
+                let t = (h - 60) / 160; r = lerp(0, 255, t); g = 255; b = lerp(100, 0, t);
+            } else if (h < 380) {
+                let t = (h - 220) / 160; r = 255; g = lerp(255, 120, t); b = 0;
+            } else {
+                let t = Math.min(1, (h - 380) / 150); r = 255; g = lerp(120, 0, t); b = 0;
+            }
+        }
+        environmentPts.push([x, y, z]);
+        targetColors.push(`rgb(${Math.round(r||0)}, ${Math.round(g||0)}, ${Math.round(b||0)})`);
+    }
+
+    // 3. Bright White Dashed Lane Markings (Center only for 2-Lane)
+    for(let i=0; i<6000; i++) {
+        let z = hash(i, 17) * MAX_Z;
+        if (z % 800 < 300) { 
+            let y = -138 + hash(i, 19) * 2; 
+            // Prevent drawing lane markings through the center of the crossroad
+            if (Math.abs(z - INTERSECT_Z) > ROAD_W) {
+                let xOffset = (hash(i, 18) - 0.5) * 5; // Strict center line with organic jitter
+                environmentPts.push([xOffset, y, z]);
+                targetColors.push(`rgb(255, 255, 255)`);
+            }
+        }
+    }
+
+    // Pad to exactly N to avoid drawing errors
+    while(environmentPts.length < N) {
+        environmentPts.push([0, -140, 0]);
+        targetColors.push(`rgb(0,0,0)`);
+    }
+    
+    const finalPts = environmentPts.slice(0, N);
+    const finalColors = targetColors.slice(0, N);
+
+    /* ---------------- Draw 3D Bounding Box Helper ---------------- */
+    function drawBB(cx, cy, cz, w, h, d, colorStr, camX, camY, camZ, cosYaw, sinYaw, cosPitch, sinPitch, focal, scale, cX, cY) {
+        let corners = [
+            [cx-w, cy, cz-d], [cx+w, cy, cz-d], [cx+w, cy+h, cz-d], [cx-w, cy+h, cz-d],
+            [cx-w, cy, cz+d], [cx+w, cy, cz+d], [cx+w, cy+h, cz+d], [cx-w, cy+h, cz+d]
+        ];
+        
+        let proj = corners.map(pt => {
+            let lx = pt[0] - camX, ly = pt[1] - camY, lz = pt[2] - camZ;
+            let rx1 = lx * cosYaw - lz * sinYaw;
+            let rz1 = lx * sinYaw + lz * cosYaw;
+            let ry2 = ly * cosPitch - rz1 * sinPitch;
+            let rz2 = ly * sinPitch + rz1 * cosPitch;
+            const persp = focal / (focal + rz2 + 200);
+            return { x: cX + rx1 * persp * scale, y: cY - ry2 * persp * scale, a: rz2 < -100 ? 0 : 1 };
+        });
+
+        if (proj.every(p => p.a === 0)) return;
+
+        ctx.strokeStyle = colorStr;
+        ctx.lineWidth = 2.0;
+        ctx.beginPath();
+        ctx.moveTo(proj[0].x, proj[0].y); ctx.lineTo(proj[1].x, proj[1].y); ctx.lineTo(proj[2].x, proj[2].y); ctx.lineTo(proj[3].x, proj[3].y); ctx.closePath();
+        ctx.moveTo(proj[4].x, proj[4].y); ctx.lineTo(proj[5].x, proj[5].y); ctx.lineTo(proj[6].x, proj[6].y); ctx.lineTo(proj[7].x, proj[7].y); ctx.closePath();
+        ctx.moveTo(proj[0].x, proj[0].y); ctx.lineTo(proj[4].x, proj[4].y);
+        ctx.moveTo(proj[1].x, proj[1].y); ctx.lineTo(proj[5].x, proj[5].y);
+        ctx.moveTo(proj[2].x, proj[2].y); ctx.lineTo(proj[6].x, proj[6].y);
+        ctx.moveTo(proj[3].x, proj[3].y); ctx.lineTo(proj[7].x, proj[7].y);
+        ctx.stroke();
+    }
+
+    /* ---------------- Mathematical Model for Lane Shifting (Ego Overtaking) ---------------- */
+    function getEgoState(z) {
+        let x = 80; // Start Right
+        let yaw = 0;
+        
+        const shifts = [
+            { zStart: 6000, zEnd: 11000, xStart: 80, xEnd: -80 },   // Shift 1: Right to Left (Pass Car 0)
+            { zStart: 16000, zEnd: 21000, xStart: -80, xEnd: 80 },  // Shift 2: Left to Right (Pass Car 1)
+            { zStart: 34000, zEnd: 39000, xStart: 80, xEnd: -80 },  // Shift 3: Right to Left (Pass Car 2)
+            { zStart: 46000, zEnd: 51000, xStart: -80, xEnd: 80 }   // Shift 4: Left to Right (Pass Car 3)
+        ];
+        
+        for (let s of shifts) {
+            if (z > s.zStart && z < s.zEnd) {
+                let u = (z - s.zStart) / (s.zEnd - s.zStart);
+                let smoothU = u * u * (3 - 2 * u); // Smoothstep interpolation
+                x = s.xStart + (s.xEnd - s.xStart) * smoothU;
+                
+                // Mathematical Yaw: Derivative of smoothstep is exactly 6*(u - u^2).
+                let dir = s.xEnd > s.xStart ? 1 : -1;
+                yaw = dir * 0.05 * 6 * (u - u * u); 
+                return { x, yaw };
+            } else if (z >= s.zEnd) {
+                x = s.xEnd; // Hold the lane once passed
+            }
+        }
+        return { x, yaw };
+    }
+
+    /* ---------------- Render Loop ---------------- */
+    const LOOP_MS = 29500; // Adjusted for explode/implode buffer
+    let start = performance.now();
+
+    function frame(now){
+      let scrollY = window.scrollY;
+      const scrollEnd = window.innerHeight * 0.8; 
+      let progress = Math.min(Math.max(scrollY, 0) / scrollEnd, 1);
+      let ease = smoother(progress);
+
+      const fW = window.innerWidth, fH = window.innerHeight;
+      const currW = fW + (pW - fW) * ease, currH = fH + (pH - fH) * ease;
+      const currX = pX * ease, currentRectTop = pY - scrollY, currY = currentRectTop * ease; 
+
+      box.style.width = currW + 'px';
+      box.style.height = currH + 'px';
+      box.style.transform = `translate(${currX}px, ${currY}px)`;
+      box.style.borderRadius = (8 * ease) + 'px';
+      box.style.border = `1px solid rgba(255,255,255,${0.12 * ease})`;
+
+      if (Math.abs(canvas.width - currW * DPR) > 1 || Math.abs(canvas.height - currH * DPR) > 1) {
+          canvas.width = currW * DPR; canvas.height = currH * DPR; W = currW; H = currH;
+          ctx.setTransform(DPR, 0, 0, DPR, 0, 0); 
+      }
+
+      if (currentRectTop < -pH) {
+          requestAnimationFrame(frame);
+          return;
+      }
+
+      // --- KINETIC ANIMATION TIMING & EXPLODE LOGIC ---
+      const t_raw = ((now - start) % LOOP_MS) / LOOP_MS;
+      let t = 0;
+      let explodeFactor = 0;
+      
+      if (t_raw < 0.15) {
+          // Opening Animation: Explode (0 to 0.05) and Implode (0.05 to 0.15)
+          if (t_raw < 0.05) {
+              explodeFactor = smoother(t_raw / 0.05);
+          } else {
+              explodeFactor = 1.0 - smoother((t_raw - 0.05) / 0.10);
+          }
+          t = 0; // Hold driving animation at start
+      } else {
+          // Normal Driving Animation Mapping
+          t = (t_raw - 0.15) / 0.85;
+      }
+      
+      // Windshield/Dashboard Camera Setup
+      let camX = 0, camY = 100, camZ = 0, camPitch = 0.05, camYaw = 0;
+      let focal = 600; 
+      const maxSpeed = 75714; 
+
+      // Timeline logic with NO pause after intersection for seamless flow
+      if (t < 0.35) {
+          // Normal Driving
+          camZ = t * maxSpeed; 
+      } else if (t < 0.40) {
+          // Hard Brake
+          let u = (t - 0.35) / 0.05;
+          let easeOut = 1 - Math.pow(1 - u, 3);
+          camZ = 26500 + easeOut * 800; // Hard stop at 27300
+          camPitch = 0.05 + Math.sin(u * Math.PI) * 0.03; // Pitch dip representing braking
+      } else if (t < 0.50) {
+          // Standstill waiting at the intersection
+          camZ = 27300; 
+      } else {
+          // Unnoticeable smooth acceleration back to constant high speed
+          let u = (t - 0.50); 
+          if (u < 0.10) {
+              let norm = u / 0.10; 
+              camZ = 27300 + 0.5 * maxSpeed * 0.10 * (norm * norm);
+              camPitch = 0.05 - Math.sin(norm * Math.PI) * 0.015; // Pitch up on acceleration
+          } else {
+              let distAtAccEnd = 0.5 * maxSpeed * 0.10; 
+              let timeAtConstSpeed = u - 0.10;
+              camZ = 27300 + distAtAccEnd + timeAtConstSpeed * maxSpeed;
+          }
+      }
+
+      // Apply dynamic mathematical lane shifting & camera yaw globally
+      let dynamics = getEgoState(camZ);
+      camX = dynamics.x;
+      camYaw = dynamics.yaw;
+
+      // Global Fade in/out logic for a 100% Seamless Loop Transition
+      let globalAlpha = 1.0;
+      if (t_raw < 0.02) globalAlpha = t_raw / 0.02; // Quick fade in during explode
+      else if (t > 0.97) globalAlpha = Math.max(0, (1.0 - t) / 0.03); // Quick fade out at end of drive
+
+      const scale = Math.max(W / 1200, H / 900); 
+      const cx = W / 2, cy = H / 2;
+      const cosYaw = Math.cos(camYaw), sinYaw = Math.sin(camYaw);
+      const cosPitch = Math.cos(camPitch), sinPitch = Math.sin(camPitch);
+
+      ctx.fillStyle = '#000000';
+      ctx.fillRect(0, 0, W, H);
+
+      // --- RENDER CLOUD ENVIRONMENT WITH EXPLOSION OFFSET ---
+      for(let i=0; i<N; i++){
+        let px = finalPts[i][0] + Math.sin(now * 0.001 + i) * 15;
+        let py = finalPts[i][1] + Math.cos(now * 0.001 + i) * 15;
+        let pz = finalPts[i][2];
+
+        // Apply Explode/Implode Transformation
+        if (explodeFactor > 0) {
+            px += (hash(i, 21) - 0.5) * 20000 * explodeFactor;
+            py += (hash(i, 22) - 0.5) * 20000 * explodeFactor;
+            pz += (hash(i, 23) - 0.5) * 20000 * explodeFactor;
+        }
+
+        let x = px - camX, y = py - camY, z = pz - camZ;
+        
+        let rx = x * cosYaw - z * sinYaw, rz = x * sinYaw + z * cosYaw;
+        let ry = y * cosPitch - rz * sinPitch, rzFinal = y * sinPitch + rz * cosPitch;
+        
+        if (rzFinal < -100) continue; 
+        
+        const persp = focal / (focal + rzFinal + 200);
+        let sA = Math.max(0.05, Math.min(1, persp * 1.5)) * globalAlpha;
+        
+        if (sA <= 0) continue;
+
+        ctx.globalAlpha = sA;
+        ctx.fillStyle = finalColors[i];
+        let s = Math.max(0.6, 3.2 * persp);
+        ctx.fillRect(cx + rx * persp * scale, cy - ry * persp * scale, s, s);
+      }
+
+      // --- RENDER DYNAMIC BOUNDING BOXES (AI TRAFFIC MODEL) ---
+      // Fade out bounding boxes during the unstructured point cloud explosion
+      ctx.globalAlpha = globalAlpha * (1.0 - explodeFactor);
+
+      // Mathematical Traffic Array: Perfectly spaced alternating vehicles.
+      // Offset ties their driving Z position to Ego's Z position ensuring they never collide.
+      const aiCars = [
+          { lane: 80, offset: 3400, color: `rgba(255, 230, 50, ${ctx.globalAlpha})` },  // Passed in Shift 1
+          { lane: -80, offset: 7400, color: `rgba(50, 220, 255, ${ctx.globalAlpha})` }, // Passed in Shift 2
+          { lane: 80, offset: 14600, color: `rgba(255, 50, 80, ${ctx.globalAlpha})` },  // Passed in Shift 3
+          { lane: -80, offset: 19400, color: `rgba(50, 220, 255, ${ctx.globalAlpha})` } // Passed in Shift 4
+      ];
+
+      for (let car of aiCars) {
+          // Cars move proportionally to the Ego car, stopping when it stops, simulating traffic flow.
+          let cz = car.offset + camZ * 0.6; 
+          if (cz > camZ - 2000 && cz < camZ + 15000) {
+              drawBB(car.lane, -110, cz, 35, 45, 100, car.color, camX, camY, camZ, cosYaw, sinYaw, cosPitch, sinPitch, focal, scale, cx, cy);
+          }
+      }
+
+      // Pedestrian triggers brake (Crosses much slower & visible from deep horizon)
+      if (t > 0.25 && t < 0.65) {
+          let pProgress = Math.max(0, Math.min(1, (t - 0.35) / 0.25));
+          let pedX = lerp(-800, 800, pProgress); 
+          drawBB(pedX, -110, 27600, 15, 60, 15, `rgba(255, 150, 0, ${ctx.globalAlpha})`, camX, camY, camZ, cosYaw, sinYaw, cosPitch, sinPitch, focal, scale, cx, cy);
+      }
+
+      // Cross Traffic: Car A (Left to Right - Wider horizon visibility) 
+      if (t > 0.30 && t < 0.55) {
+          let cx1Progress = (t - 0.30) / 0.25;
+          let crossCar1X = lerp(-9000, 9000, cx1Progress);
+          drawBB(crossCar1X, -110, 28200, 100, 45, 35, `rgba(0, 255, 255, ${ctx.globalAlpha})`, camX, camY, camZ, cosYaw, sinYaw, cosPitch, sinPitch, focal, scale, cx, cy);
+      }
+
+      // Cross Traffic: Car B (Right to Left - Wider horizon visibility)
+      if (t > 0.35 && t < 0.60) {
+          let cx2Progress = (t - 0.35) / 0.25;
+          let crossCar2X = lerp(9000, -9000, cx2Progress);
+          drawBB(crossCar2X, -110, 27900, 100, 45, 35, `rgba(255, 50, 80, ${ctx.globalAlpha})`, camX, camY, camZ, cosYaw, sinYaw, cosPitch, sinPitch, focal, scale, cx, cy);
+      }
+
+      ctx.globalAlpha = 1;
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+    })();
+    </script>
 </body>
 </html>
